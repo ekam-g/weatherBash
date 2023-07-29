@@ -2,5 +2,5 @@
 while true; do
     clear
     curl wttr.in
-    sleep 1h
+    sleep 3h
 done
