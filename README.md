@@ -15,7 +15,7 @@ or you can use the python version with advanced error handling and colors(needs 
 Unix Systems
 
 ```
-$ python <(curl -s https://raw.githubusercontent.com/carghai/weatherBash/main/weather.py)
+$ python3 <(curl -s https://raw.githubusercontent.com/carghai/weatherBash/main/weather.py)
 ```
 
 Windows Systems
