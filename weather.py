@@ -36,6 +36,7 @@ def clear_console():
 while True:
     clear_console()
     print(f"{termColors.CYAN}Loading.....")
+    clear_console()
     try:
         response = requests.get("https://wttr.in")
         if response.status_code == 200:
