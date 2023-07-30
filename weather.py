@@ -31,7 +31,10 @@ def fail(message):
 
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
-    os.system('clear')
+    try:
+        os.system('clear')
+    except:
+        pass
 
 
 while True:
