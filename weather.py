@@ -4,11 +4,10 @@ import time
 try:
     import requests
 except Exception as e:
-    print("Please install the requests library, you can do this by (pip install requests)\nAdvanced Error Details: " + str(e))
+    print(
+        "Please install the requests library, you can do this by (pip install requests)\nAdvanced Error Details: " + str(
+            e))
     exit(1)
-
-lastUpdated = ""
-lastWorking = ""
 
 
 class termColors:
@@ -22,7 +21,12 @@ class termColors:
     WHITE = '\033[97m'
 
 
+lastUpdated = ""
+lastWorking = ""
+
+
 def fail(message):
+    clear_console()
     print(f"{termColors.BLUE}Last Updated: {lastUpdated}")
     print(lastWorking)
     print(f"{termColors.RED}Error fetching weather data due to " + message)
@@ -37,19 +41,20 @@ def clear_console():
         pass
 
 
+clear_console()
+print(f"{termColors.CYAN}Loading.....")
+clear_console()
 while True:
-    clear_console()
-    print(f"{termColors.CYAN}Loading.....")
-    clear_console()
     try:
         response = requests.get("https://wttr.in")
-        if response.status_code == 200:
+        if response.status_code == 200 and response.text != lastWorking:
             lastUpdated = time.strftime("%Y-%m-%d %H:%M:%S")
             lastWorking = response.text
+            clear_console()
             print(f"{termColors.WHITE}Last Updated: {lastUpdated}")
             print(response.text)
-            time.sleep(3600)
-        else:
+            time.sleep(180)
+        elif response.status_code != 200:
             fail("Due to Status Code of " + str(response.status_code))
     except Exception as e:
         fail(str(e))
